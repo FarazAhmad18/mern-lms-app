@@ -12,5 +12,5 @@ router.post("/create-course",ctrlInstructor.createCourse)
 router.get("/get-course",ctrlInstructor.getMyCourses)
 router.put("/update-course/:id",ctrlInstructor.updateCourse)
 router.delete("/delete-course/:id",ctrlInstructor.deleteCourse)
-
+router.post("/add-lesson",ctrlInstructor.addLesson)
 module.exports=router

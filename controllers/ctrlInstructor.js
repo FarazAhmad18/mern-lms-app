@@ -1,5 +1,5 @@
 const Course=require("../models/course")
-
+const Lesson=require("../models/Lesson")
 exports.createCourse=async (req,res)=>{
 try{
     const {title,description,price,category}=req.body
@@ -12,7 +12,7 @@ try{
         message:"course created sucessfully",
         course
     })
-    console.log("Course Created:", course);
+    // console.log("Course Created:", course);
 }
 catch(err)
 {
@@ -49,7 +49,7 @@ res.status(200).json({ success: true, updatedCourse,message:"course updated" });
 exports.deleteCourse=async(req,res)=>{
     try{
         const {id}=req.params;
-        console.log("Deleting course with ID:", id, "by user:", req.user.id);
+        // console.log("Deleting course with ID:", id, "by user:", req.user.id);
 const delCourse=await Course.findOneAndDelete({_id:id,instructor:req.user.id})
 if (!delCourse) {
       return res.status(404).json({
@@ -66,3 +66,16 @@ res.status(200).json({ success: true, delCourse,message:"course deleted" });
     }
 }
 
+exports.addLesson=async(req,res)=>
+{try
+    {const{courseId,title,content,videoUrl,order}=req.body
+const newLesson=await Lesson.create({
+course:courseId,
+title,content,videoUrl,order
+})
+ res.status(201).json({ success: true, newLesson });
+}
+catch(err){
+     res.status(500).json({ success: false, message: "Lesson upload failed", err });
+}
+}

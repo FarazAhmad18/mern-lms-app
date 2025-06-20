@@ -9,4 +9,5 @@ router.use(auth);
 router.use(hasRole("student")) 
 
 router.get("/my-enrollments",studentCtrl.courseEnrollments)
+router.post("/enroll/:courseId",studentCtrl.enrollInCourse)
 module.exports=router

@@ -19,7 +19,11 @@ const courseSchema=new mongoose.Schema({
     createdAt:{
         type:Date,
         default:Date.now,
-    }
+    },
+//      thumbnail: {
+//     type: String, 
+//     default: "",  
+//   },
 })
 
 module.exports=mongoose.model("Course",courseSchema)
